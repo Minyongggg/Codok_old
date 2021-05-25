@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block css %}
+    
+{% endblock css %}
+
+{% block container %}
+<h1>로그인</h1>
+{% if error %}
+<div style="color:red;">{{ error }}</div>
+{% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <input type="text" name="username" required placeholder="Username">
+    <br>
+    <label for="password">Password</label>
+    <input type="password" name="password" required placeholder="Password">
+    <br>
+    <button type="submit">로그인</button>
+</form>
+{% endblock container %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block css %}{% load static %}
+<link rel="stylesheet" href="{% static 'board.css' %}?v=2">
+{% endblock css %}
+
+{% block container %}
+<table class="table">
+  <!-- <thead class="thead-light">
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th id="table_title" scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
+        </tr>
+      </thead> -->
+  <tbody>
+    {% for post in posts %}
+    <tr class="list">
+      <th scope="row">
+        <span></span>
+      </th>
+      <td class="table_title">
+        <a class="container-items" href="{% url 'detail' post.pk %}">
+          <div>{{ post.title }}</div>
+        </a>
+      </td>
+      <td>
+        <span>{{ post.author }}</span>
+      </td>
+      <td>
+        <span>{{ post.created_date | date:"h:i" }}</span>
+        <!-- <span>{{ post.created_date | date:"Y-m-d h:i" }}</span> -->
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a class="write" href="{% url 'new' %}">글쓰기</a>
+{% endblock container %}
