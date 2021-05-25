@@ -9,11 +9,11 @@ import datetime
 def board(request):
     posts = Post.objects.all()
 
-    return render(request, 'board.html', { 'posts': posts })
+    return render(request, '3_community/board.html', { 'posts': posts })
 
 
 
-@login_required(login_url='/registration/login')
+@login_required(login_url='account/login')
 def new(request):
     if request.method == 'POST':
         new_post = Post.objects.create(
@@ -24,7 +24,7 @@ def new(request):
             created_at = datetime.datetime.now(),
         )
         return redirect('detail', new_post.pk)
-    return render(request, 'new.html')
+    return render(request, '3_community/new.html')
 
 def detail(request, post_pk):
     post = Post.objects.get(pk=post_pk)
@@ -37,7 +37,7 @@ def detail(request, post_pk):
         )
         return redirect('detail', post_pk)
 
-    return render(request, 'detail.html', {'post': post})
+    return render(request, '3_community/detail.html', {'post': post})
 
 def edit(request, post_pk):
     post = Post.objects.get(pk=post_pk)
@@ -49,7 +49,7 @@ def edit(request, post_pk):
         )
         return redirect('detail', post_pk)
 
-    return render(request, 'edit.html', {'post': post}) 
+    return render(request, '3_community/edit.html', {'post': post}) 
 
 def delete(request, post_pk):
     post = Post.objects.get(pk=post_pk)

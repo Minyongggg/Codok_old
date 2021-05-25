@@ -8,7 +8,7 @@ import datetime
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    return render(request, 'home.html')
+    return render(request, '2_home/home.html')
 
 
 def signup(request):
@@ -16,7 +16,7 @@ def signup(request):
         find_user = User.objects.filter(username=request.POST['username'])
         if (find_user):
             error = '중복되는 아이디입니다.'
-            return render(request, 'signup.html', {'error': error})
+            return render(request, '0_registration/signup.html', {'error': error})
 
         new_user = User.objects.create_user(
             username = request.POST['username'],
@@ -25,7 +25,7 @@ def signup(request):
         auth.login(request, new_user)
         return redirect('home')
 
-    return render(request, 'signup.html')
+    return render(request, '0_registration/signup.html')
 
 def login(request):
     if (request.method == 'POST'):
@@ -35,11 +35,11 @@ def login(request):
         )
         if (login_user is None):
             error = '아이디 또는 비밀번호가 틀렸습니다.'
-            return render(request, 'login.html', {'error': error})
+            return render(request, '0_registration/login.html', {'error': error})
         auth.login(request, login_user)
         return redirect('home')
 
-    return render(request, 'login.html')
+    return render(request, '0_registration/login.html')
 
 def logout(request):
     auth.logout(request)
