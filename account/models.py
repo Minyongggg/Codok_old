@@ -16,7 +16,7 @@ class Profile(models.Model):
     introduce = models.TextField(default=None)
     matewant = models.BooleanField(default=False)
     photo = models.ImageField(upload_to="photo", default='media/photo/default_photo.png')
-    portal_id = models.CharField(max_length=20, default=None)
+    portal_id = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return self.nickname
