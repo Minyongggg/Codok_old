@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 
 {% block container %}
-<h1 style="margin-top: 100px;">시간표 보여주는 페이지</h1>
+<h1 style="margin-top: 100px;">코독한 시간표</h1>
+
+
+{% for plr in plrs %}
+<div>{{ plr.lecture.subject }} {{ plr.lecture.subnum }}</div>
+{% endfor %}
+
+
+<form action="{% url 'bblogin' %}" method="POST">
+    {% csrf_token %}
+    <label for="bbid">블랙보드Id</label>
+    <input type="text" name="bbid" required placeholder="bbid">
+    <br>
+    <label for="bbpassword">블랙보드Password</label>
+    <input type="password" name="bbpassword" required placeholder="bbPassword">
+    <br>
+    <button type="submit">로그인</button>
+</form>
+
 {% endblock container %}
