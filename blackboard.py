@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
 
 def crawling(bbid, bbpassword):
     option = Options()
@@ -20,8 +21,8 @@ def crawling(bbid, bbpassword):
 
     driver.implicitly_wait(3)
     driver.get('https://kulms.korea.ac.kr/ultra/course')
-    driver.find_element_by_xpath('//*[@id="modalPush"]/div/div/div[1]/button').click()
-    driver.find_element_by_xpath('/html/body/div[2]/div/div/section/div/div/div/div[1]/div/div[2]/h3/strong/a').click()
+    driver.find_element_by_xpath('//*[@id="modalPush"]/div/div/div[1]/button').send_keys(Keys.ENTER)
+    driver.find_element_by_xpath('/html/body/div[2]/div/div/section/div/div/div/div[1]/div/div[2]/h3/strong/a').send_keys(Keys.ENTER)
 
 
     driver.find_element_by_name('one_id').send_keys(bbid)
