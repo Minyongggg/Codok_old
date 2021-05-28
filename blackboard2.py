@@ -21,11 +21,8 @@ def crawling(bbid, bbpassword):
 
     driver.implicitly_wait(3)
     driver.get('https://kulms.korea.ac.kr/ultra/course')
-
-    a= driver.find_element_by_xpath('//*[@id="modalPush"]/div/div/div[1]/button')
-    driver.execute_script("arguments[0].click();", a)
-    b= driver.find_element_by_xpath('/html/body/div[2]/div/div/section/div/div/div/div[1]/div/div[2]/h3/strong/a')
-    driver.execute_script("arguments[0].click();", b)
+    driver.find_element_by_xpath('//*[@id="modalPush"]/div/div/div[1]/button').send_keys(Keys.ENTER)
+    driver.find_element_by_xpath('/html/body/div[2]/div/div/section/div/div/div/div[1]/div/div[2]/h3/strong/a').send_keys(Keys.ENTER)
 
 
     driver.find_element_by_name('one_id').send_keys(bbid)

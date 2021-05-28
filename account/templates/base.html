@@ -23,7 +23,7 @@
                     <div class="menu-bar">
                         <a class="nav-item" href="{% url 'home' %}">HOME</a>
                         {% if user.is_authenticated %}
-                        <div class="nav-item">안녕하세요, {{ user.username }}님</div>
+                        <div class="nav-item">안녕하세요, {{ user.profile.nickname }}님</div>
                         <a class="nav-item" href="{% url 'logout' %}">로그아웃</a>
                         {% else %}
                         <a class="nav-item" href="{% url 'login' %}">로그인</a>

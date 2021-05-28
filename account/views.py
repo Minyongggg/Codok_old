@@ -61,19 +61,30 @@ def bblogin(request):
         bbid = request.POST['bbid']
         bbpassword = request.POST['bbpassword']
         find_id = Profile.objects.filter(portal_id=bbid)
+        print(find_id is True)
         
-        if(len(find_id)>0):    #이미 있는 아이디
+        if(find_id):    #이미 있는 아이디
             if (request.user.profile.portal_id != bbid): #자기 아이디 아님
                 error = '이미 등록된 아이디입니다.'
                 return render(request, '2_home/error.html', {'error': error})
+            else: # 자기 아이디임
+                plrs = PLR.objects.filter(profile=request.user.profile)
+                plrs.delete()
         else:       #아이디 중복 없음
-            Profile.objects.update(portal_id = bbid)  #그 사람 프로필에 등록
+            plrs = PLR.objects.filter(profile=request.user.profile)
+            plrs.delete()
+            Profile.objects.filter(user=request.user).update(portal_id = bbid)  #그 사람 프로필에 등록
+            
         
         results = crawling(bbid, bbpassword)
         # print(results)
 
+        if (results is False):
+            error = "블랙보드 로그인 실패"
+            return render(request, '2_home/error.html', {'error': error})
+
         if len(results) == 0:
-            error = "강의 불러오기 실패"
+            error = "이번 학기 강의가 없습니다"
             return render(request, '2_home/error.html', {'error': error})
 
         for result in results:
