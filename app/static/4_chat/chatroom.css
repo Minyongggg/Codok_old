@@ -28,7 +28,7 @@
 }
 
 #room-body{
-    height: 634px;
+    height: 570px;
     overflow-y: scroll;
     padding: 17px 22px;
 }
@@ -111,4 +111,13 @@
     background-color: #18A0FB;
     border: none;
     border-radius: 22px;
+}
+
+.profile-img {
+    height: 66px;
+    width: 66px;
+    border-radius: 33px;
+    object-fit: cover;
+    margin: 0 10px;
+    /* vertical-align: */
 }
