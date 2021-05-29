@@ -28,7 +28,7 @@
                 <div class="col">
                     {% for classList in classLists %}
                         {% if day == classList.day and class in classList.class %}
-                            <div class="color" value="{{ classList.subnum }}">
+                            <div class="color myBtn" value="{{ classList.subnum }}">
                                 <div class="study">{{ classList.subject }}</div>
                                 <div>{{ classList.professor }}</div>
                             </div>
@@ -73,7 +73,7 @@
     </div>
 </div>
 
-<button id="myBtn">메뉴 띄우기</button>
+<!-- <button class="myBtn">메뉴 띄우기</button> -->
 
 <div id="myModal" class="modal">
     <div class="myModal-content">

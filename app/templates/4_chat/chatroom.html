@@ -11,7 +11,11 @@
             <i class="fas fa-arrow-left"></i>
         </div>
     </a>
+    {% if friend.photo %}
     <img class="profile-img" src="{{ friend.photo.url }}">
+    {% else %}
+    <img class="profile-img" src="{% static 'img/default_photo.png' %}">
+    {% endif %}
     <div class="friend-name">{{ friend.nickname }}</div>
 </div>
 <div id="room-body">
@@ -24,7 +28,7 @@
             {% if chat.read == False %}
             <div class="read"><div>1</div></div>
             {% endif %}
-            <p>
+            <p class="message">
                 {{ chat.content }}
             </p>
         </div>
@@ -33,7 +37,7 @@
     {% else %}
     <div class="come">
         <div class="chat chat-recieve">
-            <p>
+            <p class="message">
                 {{ chat.content }}
             </p>
         </div>
