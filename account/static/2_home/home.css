@@ -191,6 +191,38 @@ div {
     box-shadow: 0 2px 28px 0 rgba(75, 88, 208, 0.15);
     background-color: #ffffff;
 }
+.center {
+    margin-top: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.big {
+    font-size: 28px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.14;
+    letter-spacing: -0.14px;
+    text-align: center;
+    color: #8c94a4;
+    margin: 13px 11px 9px 1px;
+}
+.small {
+    margin: 9px 6px 233px 16px;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: -0.07px;
+    text-align: center;
+    color: #a7b0c0;
+    }
+
+
+
 .header {
     display: flex;
     justify-content: space-between;

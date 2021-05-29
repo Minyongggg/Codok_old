@@ -13,6 +13,7 @@ urlpatterns = [
 
     #chatting
     path('friends/<str:lecture_pk>', views.friends, name="friends"),
+    path('friend_profile', views.friend_profile, name="friend_profile"),
     path('makeroom/<int:friend_pk>', views.makeroom, name="makeroom"),
     path('chatroom/<int:room_pk>/<int:friend_pk>', views.chatroom, name="chatroom"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,7 +10,8 @@
     <title>코독 | codok</title>
 </head>
 <body>
-    <form id = "profileForm">
+    <form id = "profileForm" method="POST">
+        {% csrf_token %}
         <header>
             <div class="makeProfile">프로필 만들기</div>
         </header>
@@ -27,7 +28,7 @@
         <div class="profile-text">profile</div>
         <div class="information">
             <div class="major">
-                <input class="input" type="text" placeholder="  학과를 적어주세요." name ="major">
+                <input required class="input" type="text" placeholder="  학과를 적어주세요." name ="major">
                 <span class="radio">
                     <div class="labelWrapper">
                         <input type="checkbox" value="hide" name="major-hide">
@@ -40,7 +41,7 @@
                 
             </div>
             <div class="studentId">
-                <input class="input" type="text" placeholder="  학번을 적어주세요 ex.18" name="studentId">
+                <input required class="input" type="text" placeholder="  학번을 적어주세요 ex.18" name="studentId">
                 <span class="radio">
                     <div class="labelWrapper">
                         <input type="checkbox" value="hide" name="studentId-hide">
@@ -81,7 +82,7 @@
                 </span>
                 <span class="radio">
                     <div class="labelWrapper">
-                        <input type="radio" value="none" name="gender">
+                        <input type="radio" value="none" name="gender" checked>
 
                     </div>
                     <div class="labelWrapper">
@@ -90,12 +91,12 @@
                 </span>
             </div>
             <div class="form-text">소개를 적어주세요.</div>
-            <textarea class="profileText" name="description" id="" cols="30" rows="10" placeholder="ex.안녕하세요! 같이 수업 스터디 하실 분 구해요!"></textarea>
+            <textarea required class="profileText" name="description" id="" cols="30" rows="10" placeholder="ex.안녕하세요! 같이 수업 스터디 하실 분 구해요!"></textarea>
             <div class="check">
                 <span class="radio">
                     <div class="labelWrapper">
-                        <!-- <input type="checkbox" value="checked" name="check"> -->
-                        <input type="checkbox" id="none"> <label for="none"></label>
+                        <input type="checkbox" value="matewant" name="matewant">
+                         <label for="none"></label>
                     </div>
                     <div class="labelWrapper">
                         <label for="none">독강 메이트 찾고싶어요 ~<img src="{% static 'img/image 301.png' %}" alt="" style="width:24px; height:24px;"></label>
@@ -105,9 +106,10 @@
             
         </div>
 
-        <div class="submitButton">
-            <div class="buttonText">확인</div>
-        </div>
+            <button type="submit" class="submitButton"><div class="buttonText">확인</div>
+                </button>
+        
+        
 
     </form>
     

@@ -1,3 +1,20 @@
+var subnums = new Set()
+    
+var lectures = document.querySelectorAll('.color')
+for (lecture of lectures) {
+    subnum = lecture.getAttribute('value')
+    subnums.add(subnum)
+}
+
+subnums = Array.from(subnums)
+
+for (lecture of lectures) {
+    subnum = lecture.getAttribute('value')
+    i = subnums.findIndex((element) => element == subnum)
+    lecture.classList.add(`color${i}`)
+}
+
+
 
 
 //////////////////////bbModal/////////////////////////////////
@@ -23,8 +40,9 @@ bbspan.onclick = function() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == bbmodal) {
+  if (event.target == mymodal) {
     bbmodal.style.display = "none";
+    mymodal.style.display = "none";
   }
 }
 ///////////////////////////////////////////////////////////////
@@ -32,29 +50,36 @@ window.onclick = function(event) {
 ////////////////////////myModal/////////////////////////////
 // Get the modal
 var mymodal = document.getElementById("myModal");
+var mymodal_info = document.querySelector(".myModal-info")
+var mymodal_menu1 = document.querySelector(".myModal-menu1")
+var mymodal_menu2 = document.querySelector(".myModal-menu2")
+
 
 // Get the button that opens the modal
-var mybtn = document.querySelectorAll(".myBtn");
+var mybtns = document.querySelectorAll(".myBtn");
+
+
+for (mybtn of mybtns){
+
+  mybtn.onclick = function(){
+    mymodal.style.display = "block";
+    let subnum = this.getAttribute('value');
+    mymodal_menu1.setAttribute('href', `/community/friends/${subnum}`)
+    mymodal_menu2.setAttribute('href', `/community/board/${subnum}`)
+  }
+}
+
 
 // Get the <span> element that closes the modal
 var myspan = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-mybtn.onclick = function() {
-  mymodal.style.display = "block";
-}
 
 // When the user clicks on <span> (x), close the modal
 myspan.onclick = function() {
   mymodal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == mymodal) {
-    mymodal.style.display = "none";
-  }
-}
+
 
 
 const submit = document.querySelector(".submit");
