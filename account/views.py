@@ -38,6 +38,10 @@ def welcome(request):
 
     return render(request, '0_registration/welcome.html')
 
+def profile(request):
+
+    return render(request, '0_registration/profile.html')
+
 def login(request):
     if (request.method == 'POST'):
         login_user = auth.authenticate(
