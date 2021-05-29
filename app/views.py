@@ -44,7 +44,8 @@ def detail(request, lecture_pk, post_pk):
         Comment.objects.create(
             post = post, 
             content = request.POST['content'],
-            author = request.user
+            author = request.user.profile,
+            created_at = datetime.datetime.now()
         )
         return redirect('detail', lecture_pk, post_pk)
 

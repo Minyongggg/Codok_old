@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-from blackboard3 import crawling
+from blackboard import crawling
 # Create your views here.
 
 #registration
@@ -61,7 +61,15 @@ def home(request):
     class_real = []
     limit_class = []
     
-# 월:1.3//화:2
+    for plr in plrs:
+        if(plr.lecture.subtime is not None):
+            if('토' in plr.lecture.subtime):
+                classList = {}
+                classList['subject'] = plr.lecture.subject  #str
+                classList['subnum'] = plr.lecture.subnum    #str
+                classList['professor'] = plr.lecture.professor  #str
+                nontable.append(classList)
+# 월:1.3//토:1.2.3
     for plr in plrs:
         if(plr.lecture.subtime is None):      #강의시간 없을 때
             classList = {}
@@ -69,43 +77,44 @@ def home(request):
             classList['subnum'] = plr.lecture.subnum    #str
             classList['professor'] = plr.lecture.professor  #str
             nontable.append(classList)
-        elif(plr.lecture.subtime.find('//')):
-            dd = plr.lecture.subtime.split('//')
-            for a in dd:
-                classList = {}
-                classList['subject'] = plr.lecture.subject  #str
-                classList['subnum'] = plr.lecture.subnum    #str
-                classList['professor'] = plr.lecture.professor  #str
-                b = a.split(':')
-                classList['day']=b[0]
-                if(b[1].find('.')):
-                    cs = b[1].split('.')
-                    class_real += cs
-                else:
-                    cs=[]
-                    cs.append(b[1])
-                    class_real += cs
-                classList['class']=cs
-                classLists.append(classList)
         else:
-            dd = []
-            dd.append(plr.lecture.subtime)
-            for a in dd:
-                classList = {}
-                classList['subject'] = plr.lecture.subject  #str
-                classList['subnum'] = plr.lecture.subnum    #str
-                classList['professor'] = plr.lecture.professor  #str
-                b = a.split(':')
-                classList['day']=b[0]
-                if(b[1].find('.')):
-                    cs = b[1].split('.')
-                    class_real += cs
-                else:
-                    cs=[]
-                    cs.append(b[1])
-                    class_real += cs
-                classList['class']=cs
-                classLists.append(classList)
+            if(plr.lecture.subtime.find('//')):
+                dd = plr.lecture.subtime.split('//')
+                for a in dd:
+                    classList = {}
+                    classList['subject'] = plr.lecture.subject  #str
+                    classList['subnum'] = plr.lecture.subnum    #str
+                    classList['professor'] = plr.lecture.professor  #str
+                    b = a.split(':')
+                    classList['day']=b[0]
+                    if(b[1].find('.')):
+                        cs = b[1].split('.')
+                        class_real += cs
+                    else:
+                        cs=[]
+                        cs.append(b[1])
+                        class_real += cs
+                    classList['class']=cs
+                    classLists.append(classList)
+            else:
+                dd = []
+                dd.append(plr.lecture.subtime)
+                for a in dd:
+                    classList = {}
+                    classList['subject'] = plr.lecture.subject  #str
+                    classList['subnum'] = plr.lecture.subnum    #str
+                    classList['professor'] = plr.lecture.professor  #str
+                    b = a.split(':')
+                    classList['day']=b[0]
+                    if(b[1].find('.')):
+                        cs = b[1].split('.')
+                        class_real += cs
+                    else:
+                        cs=[]
+                        cs.append(b[1])
+                        class_real += cs
+                    classList['class']=cs
+                    classLists.append(classList)
 
     n = list(set(class_real))
     for i in range(len(n)):

@@ -48,11 +48,11 @@ def crawling(bbid, bbpassword):
 
     # driver.get('https://kulms.korea.ac.kr/ultra/course')
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(60)
 
     driver.execute_script("window.scrollTo(0, 900);")
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(60)
 
     lec_list = driver.find_elements_by_class_name("course-id")
 

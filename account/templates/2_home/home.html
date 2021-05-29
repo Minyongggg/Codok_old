@@ -28,7 +28,7 @@
                 <div class="col">
                     {% for classList in classLists %}
                         {% if day == classList.day and class in classList.class %}
-                            <div class="color">
+                            <div class="color" value="{{ classList.subnum }}">
                                 <div class="study">{{ classList.subject }}</div>
                                 <div>{{ classList.professor }}</div>
                             </div>
@@ -39,7 +39,7 @@
         </div>
     {% endfor %}
 </div>
-<div class="semester">{{nickname}}님의 2021.1학기 시간표입니다.</div>
+
 
 <div class="nontable">
     {% for classList in nontable %}
@@ -48,6 +48,8 @@
     {% endfor %}
 </div>
 {% endif %}
+
+<div class="semester">{{nickname}}님의 2021.1학기 시간표입니다.</div>
 
 
 
@@ -85,4 +87,28 @@
 </div>
 
 <script type="text/javascript" src="{% static '2_home/home.js' %}?v=2"></script>
+<script>
+    var subnums = new Set()
+    
+    var lectures = document.querySelectorAll('.color')
+    for (lecture of lectures) {
+        subnum = lecture.getAttribute('value')
+        subnums.add(subnum)
+    }
+
+    subnums = Array.from(subnums)
+
+    for (lecture of lectures) {
+        subnum = lecture.getAttribute('value')
+        i = subnums.findIndex((element) => element == subnum)
+        lecture.classList.add(`color${i}`)
+    }
+
+
+    
+
+
+</script>
+
+
 {% endblock container %}
