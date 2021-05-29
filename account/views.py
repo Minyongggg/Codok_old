@@ -56,12 +56,19 @@ def home(request):
     days = ["월","화","수","목","금"]
     classes = []
     classLists = []
+    nontable = []
     class_real = []
     limit_class = []
     
 # 월:1.3//화:2
-    for plr in plrs:     
-        if(plr.lecture.subtime.find('//')):
+    for plr in plrs:
+        if(plr.lecture.subtime is None):      #강의시간 없을 때
+            classList = {}
+            classList['subject'] = plr.lecture.subject  #str
+            classList['subnum'] = plr.lecture.subnum    #str
+            classList['professor'] = plr.lecture.professor  #str
+            nontable.append(classList)
+        elif(plr.lecture.subtime.find('//')):
             dd = plr.lecture.subtime.split('//')
             for a in dd:
                 classList = {}
@@ -98,7 +105,7 @@ def home(request):
                     class_real += cs
                 classList['class']=cs
                 classLists.append(classList)
-    
+
     n = list(set(class_real))
     for i in range(len(n)):
         limit_class.append(int(n[i]))
@@ -113,7 +120,7 @@ def home(request):
         classes.append(f'{i+1}')
 
     print(classes)
-    return render(request, '2_home/home.html', {'plrs': plrs, 'classLists':classLists,'days':days, 'classes':classes})
+    return render(request, '2_home/home.html', {'plrs': plrs, 'classLists':classLists,'days':days, 'classes':classes, 'nontable':nontable})
 
     
 
