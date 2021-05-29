@@ -1,3 +1,80 @@
+body {
+    margin: 0;
+    width: 100%;
+    background-color: #EEEEEE;
+}
+
+.table {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+}
+
+.col {
+    width: 65px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    border: 1px solid wheat;
+    font-weight: bold;
+    font-size: 10px;
+}
+.color {
+    width: 65px;
+    height: 80px;
+    background-color: pink;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    border: 1px solid wheat;
+    font-weight: bold;
+    font-size: 10px;
+}
+.col_time {
+    width: 50px;
+    height: 80px;
+    background-color: #b787e4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    border: 1px solid wheat;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.study {
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.day {
+    width: 65px;
+    height: 80px;
+    background-color: #b787e4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    border: 1px solid wheat;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 #bbBtn {
     margin: 20px 0 0 0;
 }

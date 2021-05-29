@@ -8,10 +8,33 @@
 {% block container %}
 <h1 style="margin-top: 100px;">코독한 시간표</h1>
 
-
-{% for plr in plrs %}
-<div>{{ plr.lecture.subject }} {{ plr.lecture.subnum }}</div>
-{% endfor %}
+{% if plrs %}
+<div class="table">
+    <div class="row">
+        <div class="col_time"> </div>
+        {% for class in classes %}
+            <div class="col_time">{{class}}교시</div>
+        {% endfor %}
+    </div>
+    {% for day in days %}
+        <div class="row">
+            <div class="day">{{day}}</div>
+            {% for class in classes %}
+                <div class="col">
+                    {% for classList in classLists %}
+                        {% if day == classList.day and class in classList.class %}
+                            <div class="color">
+                                <div class="study">{{ classList.subject }}</div>
+                                <div>{{ classList.professor }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor%}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
 
 <button id="bbBtn">강의 불러오기</button>
 

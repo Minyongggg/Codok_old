@@ -53,8 +53,69 @@ def logout(request):
 @login_required(login_url='login')
 def home(request):
     plrs = PLR.objects.filter(profile=request.user.profile)
+    days = ["월","화","수","목","금"]
+    classes = []
+    classLists = []
+    class_real = []
+    limit_class = []
+    
+# 월:1.3//화:2
+    for plr in plrs:     
+        if(plr.lecture.subtime.find('//')):
+            dd = plr.lecture.subtime.split('//')
+            for a in dd:
+                classList = {}
+                classList['subject'] = plr.lecture.subject  #str
+                classList['subnum'] = plr.lecture.subnum    #str
+                classList['professor'] = plr.lecture.professor  #str
+                b = a.split(':')
+                classList['day']=b[0]
+                if(b[1].find('.')):
+                    cs = b[1].split('.')
+                    class_real += cs
+                else:
+                    cs=[]
+                    cs.append(b[1])
+                    class_real += cs
+                classList['class']=cs
+                classLists.append(classList)
+        else:
+            dd = []
+            dd.append(plr.lecture.subtime)
+            for a in dd:
+                classList = {}
+                classList['subject'] = plr.lecture.subject  #str
+                classList['subnum'] = plr.lecture.subnum    #str
+                classList['professor'] = plr.lecture.professor  #str
+                b = a.split(':')
+                classList['day']=b[0]
+                if(b[1].find('.')):
+                    cs = b[1].split('.')
+                    class_real += cs
+                else:
+                    cs=[]
+                    cs.append(b[1])
+                    class_real += cs
+                classList['class']=cs
+                classLists.append(classList)
+    
+    n = list(set(class_real))
+    for i in range(len(n)):
+        limit_class.append(int(n[i]))
+    limit_class.sort()
 
-    return render(request, '2_home/home.html', {'plrs': plrs})
+    if(len(limit_class)):
+        last = limit_class.pop()
+    else:
+        last = 0
+
+    for i in range(last):
+        classes.append(f'{i+1}')
+
+    print(classes)
+    return render(request, '2_home/home.html', {'plrs': plrs, 'classLists':classLists,'days':days, 'classes':classes})
+
+    
 
 def bblogin(request):
     if request.method == 'POST':
@@ -94,7 +155,3 @@ def bblogin(request):
             )
 
         return redirect('home')
-
-        
-            
-        
