@@ -18,7 +18,11 @@
         {% for plr in plrs %}
         <a href="{% url 'makeroom' plr.profile.pk %}" >
             <div class="friend-bar">
+                {% if plr.profile.photo %}
                 <img class="profile-img" src="{{ plr.profile.photo.url }}">
+                {% else %}
+                <img class="profile-img" src="{% static 'img/default_photo.png' %}">
+                {% endif %}
                 <div class="friend">
                     <div class="name">{{ plr.profile.nickname }}</div>
                     {% if plr.profile.matewant is True %}
