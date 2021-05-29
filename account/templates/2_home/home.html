@@ -11,9 +11,9 @@
 {% if plrs %}
 <div class="table">
     <div class="row">
-        <div class="col_time"> </div>
+        <div class="cross">빈</div>
         {% for class in classes %}
-            <div class="col_time">{{class}}교시</div>
+            <div class="time">{{class}}교시</div>
         {% endfor %}
     </div>
     {% for day in days %}
@@ -34,6 +34,7 @@
         </div>
     {% endfor %}
 </div>
+<div class="semester">{{nickname}}님의 2021.1학기 시간표입니다.</div>
 
 <div class="nontable">
     {% for classList in nontable %}

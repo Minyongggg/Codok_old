@@ -52,6 +52,7 @@ def logout(request):
 # main page
 @login_required(login_url='login')
 def home(request):
+    nickname = request.user.profile.nickname
     plrs = PLR.objects.filter(profile=request.user.profile)
     days = ["월","화","수","목","금"]
     classes = []
@@ -120,7 +121,7 @@ def home(request):
         classes.append(f'{i+1}')
 
     print(classes)
-    return render(request, '2_home/home.html', {'plrs': plrs, 'classLists':classLists,'days':days, 'classes':classes, 'nontable':nontable})
+    return render(request, '2_home/home.html', {'plrs': plrs, 'classLists':classLists,'days':days, 'classes':classes, 'nontable':nontable, 'nickname':nickname})
 
     
 
