@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block css %}{% load static %}
-<link rel="stylesheet" href="{% static '3_community/board.css' %}?v=2">
+<link rel="stylesheet" href="{% static '3_board/board.css' %}?v=2">
 {% endblock css %}
 
 {% block container %}
+<h1>{{ lecture.subject }}</h1>
 <table class="table">
   <!-- <thead class="thead-light">
         <tr class="text-center">
@@ -20,7 +21,7 @@
         <span></span>
       </th>
       <td class="table_title">
-        <a class="container-items" href="{% url 'detail' post.pk %}">
+        <a class="container-items" href="{% url 'detail' lecture.pk post.pk %}">
           <div>{{ post.title }}</div>
         </a>
       </td>
@@ -36,5 +37,5 @@
   </tbody>
 </table>
 
-<a class="write" href="{% url 'new' %}">글쓰기</a>
+<a class="write" href="{% url 'new' lecture.pk %}">글쓰기</a>
 {% endblock container %}

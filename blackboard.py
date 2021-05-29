@@ -14,10 +14,12 @@ def crawling(bbid, bbpassword):
     option.add_argument("--disable-dev-shm-usage")
     option.add_argument("--window-size=1920x1080")
 
+    prefs = {'profile.default_content_setting_values': {'cookies' : 2, 'images': 2, 'plugins' : 2, 'popups': 2, 'geolocation': 2, 'notifications' : 2, 'auto_select_certificate': 2, 'fullscreen' : 2, 'mouselock' : 2, 'mixed_script': 2, 'media_stream' : 2, 'media_stream_mic' : 2, 'media_stream_camera': 2, 'protocol_handlers' : 2, 'ppapi_broker' : 2, 'automatic_downloads': 2, 'midi_sysex' : 2, 'push_messaging' : 2, 'ssl_cert_decisions': 2, 'metro_switch_to_desktop' : 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement' : 2, 'durable_storage' : 2}}   
+    option.add_experimental_option('prefs', prefs)
 
     driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=option)
 
-    wait = WebDriverWait(driver, 10)
+    WebDriverWait(driver, 5)
 
     driver.implicitly_wait(3)
     driver.get('https://kulms.korea.ac.kr/ultra/course')
@@ -38,15 +40,19 @@ def crawling(bbid, bbpassword):
     except:
         print("성공")
         
-    element = WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.XPATH,"//*[@id='base_tools']/bb-base-navigation-button[4]/div/li/a"))
-        )
+    # element = WebDriverWait(driver, 20).until(
+    #     EC.presence_of_element_located((By.XPATH,"//*[@id='base_tools']/bb-base-navigation-button[4]/div/li/a"))
+    #     )
 
-    ####################################################################
+    # ####################################################################
 
-    driver.get('https://kulms.korea.ac.kr/ultra/course')
+    # driver.get('https://kulms.korea.ac.kr/ultra/course')
+
+    driver.implicitly_wait(5)
 
     driver.execute_script("window.scrollTo(0, 900);")
+
+    driver.implicitly_wait(5)
 
     lec_list = driver.find_elements_by_class_name("course-id")
 
@@ -65,13 +71,4 @@ def crawling(bbid, bbpassword):
     final_result = data(lec_list)
 
     return final_result
-
-# a = 'naminyong97'
-# b = "dlalsdyd1!"
-# lectures = []
-
-# crawling(a, b, lectures)
-
-# # print(lectures)
-
 

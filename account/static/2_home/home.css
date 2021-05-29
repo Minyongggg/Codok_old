@@ -5,7 +5,8 @@ body {
 }
 h1 {
     font-size: 28px;
-    font-weight: bold;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
+
     font-stretch: normal;
     font-style: normal;
     line-height: 1.14;
@@ -33,23 +34,27 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid gray;
-    font-weight: bold;
+    border-top: 0.5px solid #a7b0c0;
+
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
     font-size: 10px;
 }
 .color {
     width: 65px;
     height: 80px;
-    background-color: pink;
+    background-color: #70c1f9;
     display: flex;
+
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
     padding: 1px;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-    font-weight: bold;
+    border-left: 0.5px solid white;
+    border-right: 0.5px solid white;
+    border-radius: 6px;
     font-size: 10px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
+    color: white;
 }
 .col_time {
     width: 50px;
@@ -60,9 +65,10 @@ h1 {
     justify-content: center;
     align-items: center;
     padding:5px;
-    border: 1px solid white;
-    font-weight: bold;
+    border: 0.5px solid white;
+
     font-size: 15px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
 }
 
 .cross {
@@ -74,9 +80,11 @@ h1 {
     justify-content: center;
     align-items: center;
     padding:5px;
-    font-weight: bold;
+
     font-size: 10px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
     color: white;
+    border-bottom: 0.5px solid gray;
 }
 
 .time {
@@ -88,14 +96,16 @@ h1 {
     justify-content: center;
     align-items: center;
     padding:5px;
-    border-top: 1px solid gray;
-    font-weight: bold;
+    border-top: 0.5px solid #a7b0c0;
+
     font-size: 10px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
 }
 
 .study {
     margin-bottom: 20px;
-    font-size: 13px;
+    font-size: 11px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
     display: -webkit-box;
     word-break: break-all;
     width: 90%; 
@@ -114,13 +124,15 @@ h1 {
     justify-content: center;
     align-items: center;
     padding:5px;
-    font-weight: bold;
-    font-size: 10px;
+
+    font-size: 13px;
     color: gray;
+    border-bottom: 0.5px solid gray;
 }
 .semester {
-    font-weight: bold;
+
     font-size: 13px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
     line-height: 16px;
     text-align: right;
     margin-top: 10px;
@@ -150,11 +162,33 @@ div {
     align-items: center;
     text-align: center;
 }
-
+.header {
+    display: flex;
+    justify-content: space-between;
+}
 #bbBtn {
-    margin: 20px 0 0 0;
+    margin-top: 17px;
+    margin-right: 19px;
+    display: flex;
+    border-radius: 98px;
+    border-style: none;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background-color: #f8fafd;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    flex-grow: 0;
+    box-shadow: 10px 10px 20px 0 rgba(174, 174, 192, 0.3), -10px -10px 30px 0 #ffffff;
+  
 }
 
+#bbBtn:hover {
+    background-color: #a7b0c0;
+    color: #EEEEEE;
+}
 .modal {
     display: none;
     position: fixed;
@@ -165,7 +199,7 @@ div {
     height: 100%;
     /* overflow: auto; */
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(18,18,29,0.6);
 }
 
 .bbModal-content {
@@ -187,7 +221,9 @@ input {
     margin: 0 0 10px 0;
 }
 
+
 .submit {
+    margin-top:30px;
     height: 50px;
     width: 150px;
     border-radius: 25px;
@@ -201,11 +237,12 @@ input {
     to {top: 0; opcity: 1}
 }
 
-.cancle {
+.cancel {
     height: 50px;
     width: 150px;
     color: rgb(133, 133, 133);
     font-size: 14px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
     border: none;
     background-color: white;
 }
@@ -236,3 +273,16 @@ input {
     width: 30px;
     border-radius: 15px;
 }
+.none {
+    display: none;
+}
+.loading {
+    display:none;
+}
+.status {
+    color: #a7b0c0;
+    font-size: 12px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif'; 
+}
+
+

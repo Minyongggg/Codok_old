@@ -6,12 +6,17 @@
 {% endblock css %}
 
 {% block container %}
-<h1>코독한 시간표</h1>
+<div class="header">
+    <h1 style="display:flex; margin-top:35px; margin-left:30px; font-family: 'Spoqa Han Sans Neo', 'sans-serif'; ">코독한 시간표</h1>
+    <div id="bbBtn">
+            <i class="fas fa-plus fa-2x"></i>
+    </div>
+</div>
 
 {% if plrs %}
 <div class="table">
     <div class="row">
-        <div class="cross">빈</div>
+        <div class="cross">.</div>
         {% for class in classes %}
             <div class="time">{{class}}교시</div>
         {% endfor %}
@@ -44,7 +49,7 @@
 </div>
 {% endif %}
 
-<button id="bbBtn">강의 불러오기</button>
+
 
 <div id="bbModal" class="modal">
     <div class="bbModal-content">
@@ -52,16 +57,17 @@
             {% csrf_token %}
             <div><strong>블랙보드로 시간표 가져오기</strong></div>
             <br>
-            <div>블랙보드로 로그인을 하시면 자동으로 시간표 등록 가능!</div>
+            <div class="status">블랙보드로 로그인하면 <br>자동으로 시간표 등록!</div>
             <br>
-            <input type="text" name="bbid" required placeholder="블랙보드 아이디">
+            <input class="bbid" type="text" name="bbid" required placeholder="블랙보드 아이디">
             <br>
-            <input type="password" name="bbpassword" required placeholder="블랙보드 비밀번호">
+            <input class="bbpw" type="password" name="bbpassword" required placeholder="블랙보드 비밀번호">
             <br>
-            <button type="submit" class="submit">확인</button>
+            <i class="fas fa-spinner fa-spin fa-fw loading fa-4x"></i>
+            <button type="submit" class="submit" >확인</button>
             <br>
-            <button class="cancle">취소하기</button>
         </form>
+        <button class="cancel">취소하기</button>
     </div>
 </div>
 

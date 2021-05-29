@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block css %}{% load static %}
-<link rel="stylesheet" href="{% static '3_community/detail.css' %}?v=2">
+<link rel="stylesheet" href="{% static '3_board/detail.css' %}?v=2">
 {% endblock %}
 
 {% block container %}
@@ -10,16 +10,15 @@
   <div>{{ post.author }}</div>
   <div>{{ post.content }}</div>
 </div>
-<a href="{% url 'board' %}">홈으로</a>
+<a href="{% url 'board' lecture_pk %}">홈으로</a>
 
 {% if user.is_authenticated and post.author.pk == user.pk %}
-<a href="{% url 'edit' post.pk %}">수정하기</a>
-<a href="{% url 'delete' post.pk %}">삭제하기</a>
+<a href="{% url 'delete' lecture_pk post.pk %}">삭제하기</a>
 {% endif %}
 {% for comment in post.comments.all %}
 <li>{{ comment.content }} {{comment.author}}</li>
 {% if user.is_authenticated and comment.author.pk == user.pk %}
-<a href="{% url 'delete_comment' post.pk comment.pk %}">댓글삭제</a>
+<a href="{% url 'delete_comment' lecture_pk post.pk comment.pk %}">댓글삭제</a>
 {% endif %}
 {% endfor %}
 
