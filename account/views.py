@@ -13,6 +13,10 @@ from blackboard import crawling
 # Create your views here.
 
 #registration
+def main(request):
+
+    return render(request, '0_registration/main.html')
+
 def signup(request):
     if (request.method == 'POST'):
         find_user = User.objects.filter(username=request.POST['username'])
@@ -25,9 +29,14 @@ def signup(request):
             password = request.POST['password'],
         )
         auth.login(request, new_user)
-        return redirect('home')
+        return redirect('welcome')
 
     return render(request, '0_registration/signup.html')
+
+
+def welcome(request):
+
+    return render(request, '0_registration/welcome.html')
 
 def login(request):
     if (request.method == 'POST'):
