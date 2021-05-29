@@ -11,26 +11,33 @@ import datetime
 from account.models import Profile, Lecture, PLR
 
 # Create your views here.
-def board(request):
-    posts = Post.objects.all()
 
-    return render(request, '3_community/board.html', { 'posts': posts })
+###################### board ############################
+
+def board(request, lecture_pk):
+    lecture = Lecture.objects.get(subnum=lecture_pk)
+    posts = Post.objects.filter(lecture=lecture)
+
+    return render(request, '3_board/board.html', { 'posts': posts, 'lecture': lecture })
 
 
 
 @login_required(login_url='account/login')
-def new(request):
+def new(request, lecture_pk):
+    lecture = Lecture.objects.get(subnum=lecture_pk)
     if request.method == 'POST':
         new_post = Post.objects.create(
+            lecture = lecture,
             author = request.user.profile,
             title = request.POST['title'],
             content = request.POST['content'],
             created_at = datetime.datetime.now(),
         )
-        return redirect('detail', new_post.pk)
-    return render(request, '3_community/new.html')
+        return redirect('detail', lecture_pk, new_post.pk)
+    return render(request, '3_board/new.html', {'lecture_pk': lecture_pk })
 
-def detail(request, post_pk):
+def detail(request, lecture_pk, post_pk):
+    lecture = Lecture.objects.get(subnum=lecture_pk)
     post = Post.objects.get(pk=post_pk)
 
     if (request.method == 'POST'):
@@ -39,32 +46,27 @@ def detail(request, post_pk):
             content = request.POST['content'],
             author = request.user
         )
-        return redirect('detail', post_pk)
+        return redirect('detail', lecture_pk, post_pk)
 
-    return render(request, '3_community/detail.html', {'post': post})
+    return render(request, '3_board/detail.html', {'post': post, 'lecture_pk': lecture_pk})
 
-def edit(request, post_pk):
+def delete(request, lecture_pk, post_pk):
     post = Post.objects.get(pk=post_pk)
+    Post.objects.filter(pk=post_pk).update(
+        title = "펑",
+        content = "펑"
+    )
+    return redirect('detail', lecture_pk, post_pk)
 
-    if request.method == 'POST':
-        Post.objects.filter(pk=post_pk).update(
-          title = request.POST['title'],
-          content = request.POST['content']
-        )
-        return redirect('detail', post_pk)
 
-    return render(request, '3_community/edit.html', {'post': post}) 
+def delete_comment(request, lecture_pk, post_pk, comment_pk):
+    comment = Comment.objects.filter(pk=comment_pk)
+    comment.update(
+        content = "펑"
+    )
+    return redirect('detail', lecture_pk, post_pk)
 
-def delete(request, post_pk):
-    post = Post.objects.get(pk=post_pk)
-    post.delete()
-    return redirect('board')
-
-def delete_comment(request, post_pk, comment_pk):
-    comment = Comment.objects.get(pk=comment_pk)
-    comment.delete()
-    return redirect('detail', post_pk)
-
+########################################################
 
 ############### chatting ##############
 

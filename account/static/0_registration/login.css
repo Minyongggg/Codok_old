@@ -17,8 +17,8 @@
     font-style: normal;
     text-align: center;
     color: #007fff;
-
 }
+
 #back{
     margin-top: 15px;
     margin-left: 30px;
@@ -117,7 +117,7 @@ h1 {
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 #submit:hover {
-    background-color: #a7b0c0;
+    background-color: #18A0FB;
 }
 
 #forget {
