@@ -6,32 +6,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+        <script src="https://kit.fontawesome.com/be589f1f63.js" crossorigin="anonymous"></script>
         {% block css %}
 
         {% endblock css %}
-        <title>Document</title>
+        <title>Codok</title>
     </head>
     <body>
         <div class="wrap">
-            <div class="header">
-                <div class="nav-bar">
-                    <div class="logo-bar">
-                        <a class="logo" href="{% url 'home' %}">
-                            Codok
-                        </a>
-                    </div>
-                    <div class="menu-bar">
-                        <a class="nav-item" href="{% url 'home' %}">HOME</a>
-                        {% if user.is_authenticated %}
-                        <div class="nav-item">안녕하세요, {{ user.profile.nickname }}님</div>
-                        <a class="nav-item" href="{% url 'logout' %}">로그아웃</a>
-                        {% else %}
-                        <a class="nav-item" href="{% url 'login' %}">로그인</a>
-                        <a class="nav-item" href="{% url 'signup' %}">회원가입</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+   
             
             <div class="container">
                 {% block container %}
@@ -41,14 +24,15 @@
             
             <div class="footer">
                 <div class="footer-items">
-                    <a href="{% url 'home' %}">
+                    <a href="{% url 'login' %}">
                         <i class="fas fa-home" aria-hidden="true"></i>
+
                     </a>
                     <span>홈</span>
                 </div>
                 <div class="footer-items">
-                    <a href="{% url 'home' %}">
-                        <i class="far fa-comment-dots" aria-hidden="true"></i>
+                    <a href="{% url 'logout' %}">
+                        <i class="fas fa-comment-dots" aria-hidden="true"></i>   
                     </a>
                     <span>톡방</span>
                 </div>

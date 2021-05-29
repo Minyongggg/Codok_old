@@ -6,7 +6,7 @@
 {% endblock css %}
 
 {% block container %}
-<h1 style="margin-top: 100px;">코독한 시간표</h1>
+<h1>코독한 시간표</h1>
 
 {% if plrs %}
 <div class="table">
@@ -32,6 +32,13 @@
                 </div>
             {% endfor %}
         </div>
+    {% endfor %}
+</div>
+
+<div class="nontable">
+    {% for classList in nontable %}
+        <div class="non">
+            <div class="txt">{{ classList.subject }} | {{ classList.professor }}</div></div>
     {% endfor %}
 </div>
 {% endif %}
