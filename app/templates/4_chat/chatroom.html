@@ -24,7 +24,7 @@
             {% if chat.read == False %}
             <div class="read"><div>1</div></div>
             {% endif %}
-            <p>
+            <p class="message">
                 {{ chat.content }}
             </p>
         </div>
@@ -33,7 +33,7 @@
     {% else %}
     <div class="come">
         <div class="chat chat-recieve">
-            <p>
+            <p class="message">
                 {{ chat.content }}
             </p>
         </div>
