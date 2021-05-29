@@ -5,8 +5,13 @@
 {% endblock css %}
 
 {% block container %}
-<div>
-    <a href="{% url 'home' %}"><</a>
+<div class=container>
+    <a href="{% url 'home' %}">
+        <div class="back">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        
+    </a>
     <h1>{{ lecture.subject }} 수강친구</h1>
     <p>수업을 독강하는 친구에게 톡을 걸어보세요</p>
     <ul>
@@ -14,9 +19,13 @@
         <a href="{% url 'makeroom' plr.profile.pk %}" >
             <div class="friend-bar">
                 <img class="profile-img" src="{{ plr.profile.photo.url }}">
-                <div>
-                    <div>{{ plr.profile.nickname }}</div>
-                    <p>{{ plr.profile.introduce }}</p>
+                <div class="friend">
+                    <div class="name">{{ plr.profile.nickname }}</div>
+                    {% if plr.profile.matewant is True %}
+                        <img class="hand" src="{% static 'img/hand.svg' %}">
+                    {% endif %}
+                    <p class="introduce">{{ plr.profile.introduce }}</p>
+                    
                 </div>
             </div>
         </a>

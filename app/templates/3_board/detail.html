@@ -22,7 +22,7 @@
 {% endif %}
 {% endfor %}
 
-<form method="POST">
+<form action="" method="POST">
   {% csrf_token %}
   {% if user.is_authenticated %}
   <input type="text" name="content" placeholder="댓글을 입력하세요">
