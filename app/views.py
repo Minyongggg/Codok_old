@@ -1,9 +1,14 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Community
+from app.models import Post, Comment
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 import datetime
+from account.models import Profile, Lecture, PLR
 
 # Create your views here.
 def board(request):
@@ -17,7 +22,6 @@ def board(request):
 def new(request):
     if request.method == 'POST':
         new_post = Post.objects.create(
-            community = Community.objects.all()[0],
             author = request.user.profile,
             title = request.POST['title'],
             content = request.POST['content'],
@@ -60,3 +64,15 @@ def delete_comment(request, post_pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
     comment.delete()
     return redirect('detail', post_pk)
+
+
+############### chatting ##############
+
+def friends(request, lecture_pk):
+    lecture = Lecture.objects.get(subnum=lecture_pk)
+    plrs = PLR.objects.filter(lecture=lecture)
+
+    return render(request, '4_chat/friends.html', {'friends': plrs})
+
+
+#######################################

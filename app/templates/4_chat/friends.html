@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'friends.css' %}">
+{% endblock css %}
+
+{% block container %}
+<div>
+    <h1>자료구조 수강친구</h1>
+    <ul>
+        {% for plr in plrs %}
+        <!-- <a href="{% url 'makeroom' friend.pk %}"> -->
+        <a href="">
+            <div class="friend-bar">
+                <img class="profile-img" src="{{ plr.profile.photo.url }}">
+                <div>
+                    <li>{{ plr.profile.nickname }}</li>
+                    <p>새로운 메시지입니다.</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock container %}

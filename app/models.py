@@ -7,13 +7,8 @@ from django.contrib.auth.models import User
 from account.models import Profile, Lecture, PLR
 
 # Create your models here.
-class Community(models.Model):
-    lecture = models.OneToOneField(Lecture, on_delete=models.CASCADE, related_name="lecture", default=None)
-    def __str__(self):
-        return f"{self.lecture} 커뮤니티"
-
 class Post(models.Model):
-    community = models.ForeignKey(Community, on_delete=models.CASCADE, related_name="posts", default=None)
+    lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, related_name="posts", default=None)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts", default=None)
     title = models.CharField(max_length=200, default=None)
     content = models.TextField(default=None)
