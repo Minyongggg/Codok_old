@@ -1,0 +1,24 @@
+.profile-img {
+    height: 66px;
+    width: 66px;
+    /* overflow: hidden; */
+    /* vertical-align: middle; */
+}
+
+.profile-img {
+    height: 66px;
+    width: 66px;
+    border-radius: 33px;
+    object-fit: cover;
+    margin: 0 10px;
+    /* vertical-align: */
+}
+
+.friend-bar {
+    display: flex;
+    margin: 15px 0;
+}
+
+.friend-bar div {
+    padding-top: 11px;
+}

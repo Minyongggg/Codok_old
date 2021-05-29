@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static '4_chat/chatroom.css' %}">
+{% endblock css %}
+
+{% block container %}
+<div>
+    <div id="room-top">
+        <a href="{% url 'home' %}" class="back"><div><</div></a>
+        <div class="profile-img"></div>
+        <div class="friend-name">{{ friend.nickname }}</div>
+    </div>
+    <div id="room-body">
+        {% for chat in chats %}
+        <!-- 채팅 내용 -->
+        {% if chat.pfrom == request.user.profile %}
+        <div class="chat chat-send">
+            {% if chat.read == False %}
+            <div class="read"><div>1</div></div>
+            {% endif %}
+            <p>
+
+                {{ chat.content }}
+            </p>
+        </div>
+
+        {% else %}
+        <div class="chat chat-recieve">
+            <p>
+                {{ chat.content }}
+            </p>
+        </div>
+        {% endif %}
+        <!--  -->
+        {% endfor %}
+    </div>
+    <div id="room-foot">
+        <div id="chat-input">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" name="content" required placeholder="친구에게 chat을 보내세요.">
+                <button type="submit">></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock container %}

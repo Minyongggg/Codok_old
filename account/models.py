@@ -17,7 +17,7 @@ class Profile(models.Model):
     studentid_open = models.BooleanField(default=True)
     introduce = models.TextField(default=None)
     matewant = models.BooleanField(default=False)
-    photo = models.ImageField(upload_to="photo", default='media/photo/default_photo.png')
+    photo = models.ImageField(upload_to="", default='photo/default_photo.png')
     portal_id = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
