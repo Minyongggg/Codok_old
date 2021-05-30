@@ -13,5 +13,7 @@ urlpatterns = [
 
     path('home', views.home, name="home"),
     path('bblogin', views.bblogin, name="bblogin"),
+
+    path('profile_edit/<int:profile_pk>', views.profile_edit, name="profile_edit"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

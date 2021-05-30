@@ -38,37 +38,6 @@ def welcome(request):
 
     return render(request, '0_registration/welcome.html')
 
-def profile(request):
-    if(request.method == 'POST'):
-        if(request.POST.getlist('major-hide')):
-            major_open = True
-        else:
-            major_open = False
-        
-        if(request.POST.getlist('studentId-hide')):
-            studentid_open = True
-        else:
-            studentid_open = False
-
-        if(request.POST.getlist('matewant')):
-            matewant = True
-        else:
-            matewant = False
-        
-        profile = Profile.objects.create(
-            user = request.user,
-            nickname = request.POST['nickname'],
-            gender = request.POST['gender'],
-            major = request.POST['major'],
-            major_open = major_open,
-            studentid = request.POST['studentId'],
-            studentid_open = studentid_open,
-            introduce = request.POST['description'],
-            matewant = matewant
-        )
-        return redirect('home')
-
-    return render(request, '0_registration/profile.html')
 
 def login(request):
     if (request.method == 'POST'):
@@ -173,7 +142,7 @@ def home(request):
     return render(request, '2_home/home.html', {'plrs': plrs, 'classLists':classLists,'days':days, 'classes':classes, 'nontable':nontable, 'nickname':nickname})
 
     
-
+@login_required(login_url='login')
 def bblogin(request):
     if request.method == 'POST':
         bbid = request.POST['bbid']
@@ -212,3 +181,80 @@ def bblogin(request):
             )
 
         return redirect('home')
+
+################## my page #############################
+@login_required(login_url='login')
+def mypage(request):
+    
+    return render(request, "1_mypage/mypage.html")
+
+def profile(request):
+    if(request.method == 'POST'):
+        if(request.POST.getlist('major-hide')):
+            major_open = True
+        else:
+            major_open = False
+        
+        if(request.POST.getlist('studentId-hide')):
+            studentid_open = True
+        else:
+            studentid_open = False
+
+        if(request.POST.getlist('matewant')):
+            matewant = True
+        else:
+            matewant = False
+        
+        profile = Profile.objects.create(
+            user = request.user,
+            nickname = request.POST['nickname'],
+            gender = request.POST['gender'],
+            major = request.POST['major'],
+            major_open = major_open,
+            studentid = request.POST['studentId'],
+            studentid_open = studentid_open,
+            introduce = request.POST['description'],
+            matewant = matewant,
+            photo = request.POST['photo'],
+        )
+        return redirect('home')
+
+    return render(request, '0_registration/profile.html')
+
+
+
+@login_required(login_url='login')
+def profile_edit(request, profile_pk):
+    profile = Profile.objects.get(pk=profile_pk)
+    if(request.method == 'POST'):
+        if(request.POST.getlist('major-hide')):
+            major_open = True
+        else:
+            major_open = False
+        
+        if(request.POST.getlist('studentId-hide')):
+            studentid_open = True
+        else:
+            studentid_open = False
+
+        if(request.POST.getlist('matewant')):
+            matewant = True
+        else:
+            matewant = False
+        
+        Profile.objects.filter(pk=profile.pk).update(
+            user = request.user,
+            nickname = request.POST['nickname'],
+            gender = request.POST['gender'],
+            major = request.POST['major'],
+            major_open = major_open,
+            studentid = request.POST['studentId'],
+            studentid_open = studentid_open,
+            introduce = request.POST['description'],
+            matewant = matewant,
+            photo = request.POST['photo']
+        )
+        return redirect('home')
+
+    return render(request, "1_mypage/profile_edit.html", {'profile': profile})
+
