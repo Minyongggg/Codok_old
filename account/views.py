@@ -1,3 +1,4 @@
+from app.models import Chatroom
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Profile, Lecture, PLR
@@ -186,9 +187,10 @@ def bblogin(request):
 @login_required(login_url='login')
 def mypage(request):
     myprofile = Profile.objects.get(user=request.user)
-    
+    chatroom1 = Chatroom.objects.filter(profile1=myprofile)
+    chatroom2 = Chatroom.objects.filter(profile2=myprofile)
 
-    return render(request, "1_mypage/mypage.html", {"myprofile": myprofile} )
+    return render(request, "1_mypage/mypage.html", {"myprofile": myprofile, "chatroom1": chatroom1, "chatroom2": chatroom2} )
 
 def profile(request):
     if(request.method == 'POST'):
