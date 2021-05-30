@@ -17,10 +17,11 @@
     </div>
 </div>
 
-<div class="profile_box">
+<a href="{% url 'profile_edit' request.user.profile.pk %}">
+    <div class="profile_box">
     <img class="prof_img" src="{% static 'img/default_photo.png' %}">
     <div class="profile">
-
+        
         <h1 style="font-family: 'Spoqa Han Sans Neo', 'sans-serif';
             font-size: 18px;">{{ myprofile.nickname }}</h1>
         <div id="info">
@@ -29,35 +30,38 @@
             {% else %}
             <span class="smallprofiletext">{{myprofile.major}}</span>
             {% endif %}
-
+            
             {% if myprofile.studentid_open is True %}
             <span class="smallprofiletext">비공개입니다.</span>
             {% else %}
             <span class="smallprofiletext">{{ myprofile.studentid }}</span>
             {% endif %}
             <span class="smallprofiletext">{{ myprofile.gender }}}</span>
-
+            
             {% if myprofile.matewant is True %}
             <img id="hand" src="{% static 'img/hand.svg' %}">
             {% endif %}
-
+            
         </div>
         <span id="smallinfo">{{ myprofile.introduce }}</span>
     </div>
-</div>
+    </div>
+</a>
 <div class="list_container">
     {% for chatroom in chatroom1 %}
-    <div class="wrapper">
+    <a href="/community/chatroom/{{ chatroom.pk }}/{{ chatroom.profile2.pk }}">
+        <div class="wrapper">
         {% if chatroom.profile2.photo %}
         <img class="friend_img" src="{{ chatroom.profile2.photo.url }}" alt="">
         {% else %}
         <img class="friend_img" src="{% static 'img/default_photo.png' %}" alt="">
         {% endif %}
         <div class="friendname">{{ chatroom.profile2.nickname }}</div>
-    </div>
+    </div></a>
     {% endfor %}
     
     {% for chatroom in chatroom2 %}
+    <a href="/community/chatroom/{{ chatroom.pk }}/{{ chatroom.profile1.pk }}">
     <div class="wrapper">
         {% if chatroom.profile1.photo %}
         <img class="friend_img" src="{{ chatroom.profile1.photo.url }}" alt="">
@@ -66,6 +70,7 @@
         {% endif %}
         <div class="friendname">{{ chatroom.profile1.nickname }}</div>
     </div>
+    </a>
     {% endfor %}
     
 </div>
