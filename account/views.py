@@ -39,6 +39,34 @@ def welcome(request):
     return render(request, '0_registration/welcome.html')
 
 def profile(request):
+    if(request.method == 'POST'):
+        if(request.POST.getlist('major-hide')):
+            major_open = True
+        else:
+            major_open = False
+        
+        if(request.POST.getlist('studentId-hide')):
+            studentid_open = True
+        else:
+            studentid_open = False
+
+        if(request.POST.getlist('matewant')):
+            matewant = True
+        else:
+            matewant = False
+        
+        profile = Profile.objects.create(
+            user = request.user,
+            nickname = request.POST['nickname'],
+            gender = request.POST['gender'],
+            major = request.POST['major'],
+            major_open = major_open,
+            studentid = request.POST['studentId'],
+            studentid_open = studentid_open,
+            introduce = request.POST['description'],
+            matewant = matewant
+        )
+        return redirect('home')
 
     return render(request, '0_registration/profile.html')
 
@@ -142,7 +170,6 @@ def home(request):
     for i in range(last):
         classes.append(f'{i+1}')
 
-    print(classes)
     return render(request, '2_home/home.html', {'plrs': plrs, 'classLists':classLists,'days':days, 'classes':classes, 'nontable':nontable, 'nickname':nickname})
 
     

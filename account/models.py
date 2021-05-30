@@ -6,13 +6,14 @@ class Profile(models.Model):
     GENDER = (
             ('M', 'Male'),
 	        ('F', 'Female'),
+            ('N', 'None')
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', default=None)
     nickname = models.CharField(max_length=20, default=None)
-    gender = models.CharField(max_length=1,choices=GENDER,default='Male')
-    gender_open = models.BooleanField(default=True)
+    gender = models.CharField(max_length=10,choices=GENDER,default='None')
     major = models.CharField(max_length=20, default=None)
+    major_open = models.BooleanField(default=True)
     studentid = models.CharField(max_length=20, default=None)
     studentid_open = models.BooleanField(default=True)
     introduce = models.TextField(default=None)

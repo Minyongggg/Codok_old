@@ -39,17 +39,25 @@
         </div>
     {% endfor %}
 </div>
-
-
 <div class="nontable">
     {% for classList in nontable %}
         <div class="non">
             <div class="txt">{{ classList.subject }} | {{ classList.professor }}</div></div>
     {% endfor %}
 </div>
+<div class="semester">{{nickname}}님의 2021.1학기 시간표입니다.</div>
+{% else %}
+<div class="center">
+    <div class="icon">
+        <img src="{% static 'img/남.svg' %}" alt="">
+        <img src="{% static 'img/여.svg' %}" alt="">
+    </div>
+    <div class="big">내 시간표 등록하기</div>
+    <div class="small">우측 상단 플러스 버튼을 눌러서<br>자동으로 나의 시간표를 등록하고<br>독강메이트를 찾아보세요 :)</div>
+</div>
 {% endif %}
 
-<div class="semester">{{nickname}}님의 2021.1학기 시간표입니다.</div>
+
 
 
 
@@ -78,37 +86,11 @@
 <div id="myModal" class="modal">
     <div class="myModal-content">
         <span class="close">&times;</span>
-        <div class="myModal-info">
-            강의정보
-        </div>
-        <a><div class="myModal-menu">강의 코독친구 탐색</div></a>
-        <a><div class="myModal-menu">수업 커뮤니티</div></a>
+        <a class="myModal-menu1"><div>강의 코독친구 탐색</div></a>
+        <a class="myModal-menu2"><div>수업 커뮤니티</div></a>
     </div>
 </div>
 
 <script type="text/javascript" src="{% static '2_home/home.js' %}?v=2"></script>
-<script>
-    var subnums = new Set()
-    
-    var lectures = document.querySelectorAll('.color')
-    for (lecture of lectures) {
-        subnum = lecture.getAttribute('value')
-        subnums.add(subnum)
-    }
-
-    subnums = Array.from(subnums)
-
-    for (lecture of lectures) {
-        subnum = lecture.getAttribute('value')
-        i = subnums.findIndex((element) => element == subnum)
-        lecture.classList.add(`color${i}`)
-    }
-
-
-    
-
-
-</script>
-
 
 {% endblock container %}

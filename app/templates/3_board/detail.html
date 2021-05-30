@@ -4,29 +4,48 @@
 {% endblock %}
 
 {% block container %}
-
-<div class="container-post-container">
-  <div>{{ post.title }}</div>
-  <div>{{ post.author }}</div>
-  <div>{{ post.content }}</div>
+<div class="header">
+  <a  href="{% url 'board' lecture_pk %}"><div class="back"><i class="fas fa-arrow-left"></i></div></a>
+  {% if user.is_authenticated and post.author.pk == user.pk %}
+  <a href="{% url 'delete' lecture_pk post.pk %}">삭제하기</a>
+  {% endif %}
 </div>
-<a href="{% url 'board' lecture_pk %}">홈으로</a>
+<div class="profile">
+  <img class="profile-img" src="{% static 'img/default_photo.png' %}">
+  <div class="unknown">익명</div>
+</div>
+<div class="container-post-container">
+  <div id="title">{{ post.title }}</div>
+  
+  <div id="content">{{ post.content }}</div>
+</div>
 
-{% if user.is_authenticated and post.author.pk == user.pk %}
-<a href="{% url 'delete' lecture_pk post.pk %}">삭제하기</a>
-{% endif %}
+
+
 {% for comment in post.comments.all %}
-<li>{{ comment.content }} {{comment.author}}</li>
-{% if user.is_authenticated and comment.author.pk == user.pk %}
-<a href="{% url 'delete_comment' lecture_pk post.pk comment.pk %}">댓글삭제</a>
-{% endif %}
+<div class="comment">
+  <div class="comment-main">
+      <img class="comment-profile-img" src="{% static 'img/default_photo.png' %}">
+    <div class="comment-wrapper">
+      <div class="unknown">익명</div>
+      <div class="comment-content">{{ comment.content }}</div>
+    </div>
+    
+  </div>
+  {% if user.is_authenticated and comment.author.pk == user.pk %}
+    <a  href="{% url 'delete_comment' lecture_pk post.pk comment.pk %}"><div class="delete_comment">삭제</div></a>
+    {% endif %}
+</div>
 {% endfor %}
 
 <form action="" method="POST">
   {% csrf_token %}
   {% if user.is_authenticated %}
-  <input type="text" name="content" placeholder="댓글을 입력하세요">
-  <button type="submit">댓글 쓰기</button>
+  <div class="comment_input">
+    <input type="text" name="content" placeholder="댓글을 입력하세요">
+    <button type="submit"><i class="fas fa-arrow-up"></i></button>
+  </div>
+
   {% else %}
   <span>댓글을 작성하려면 로그인하세요.</span>
   {% endif %}

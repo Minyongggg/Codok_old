@@ -13,4 +13,5 @@ urlpatterns = [
 
     path('home', views.home, name="home"),
     path('bblogin', views.bblogin, name="bblogin"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

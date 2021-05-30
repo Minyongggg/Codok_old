@@ -158,6 +158,7 @@ label{
     align-items: center;
     margin: 0 auto;
     margin-top : 25px;
+    cursor: pointer;
 }
 
 .buttonText {
@@ -171,6 +172,10 @@ label{
     letter-spacing: -0.08px;
     text-align: center;
     color: #ffffff;
+    text-align: center;
+}
+button {
+    text-align: center;
 }
 
 
