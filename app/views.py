@@ -71,8 +71,11 @@ def delete_comment(request, lecture_pk, post_pk, comment_pk):
 
 ############### chatting ##############
 
-def friend_profile(request):
-    return render(request, '4_chat/friend_profile.html')
+def friend_profile(request, friend_pk):
+    friend = Profile.objects.get(pk=friend_pk)
+    plrs = PLR.objects.filter(profile=friend)
+
+    return render(request, '4_chat/friend_profile.html', {'friend': friend, 'plrs': plrs})
 
 def friends(request, lecture_pk):
     lecture = Lecture.objects.get(subnum=lecture_pk)

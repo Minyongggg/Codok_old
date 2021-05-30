@@ -6,46 +6,54 @@
 
 {% block container %}
 
-<body>
-    <div class = "talk">
-        <div class="talk">
-            <div class="talk-text">talk하기</div>
-        </div>      
-        <div class="profile" >
-            <img class="profile" style="width: 40px; height: 40px;" src="{% static 'img/default_photo.png' %}" >
-            <div class="profiletext">미개봉새내기</div>
-            <div class="smallprofiletext">환경생태공학부</div>
-            <div class="smallprofiletext">17</div>
-            <div class="smallprofiletext">여성</div>
-        </div>
-
-<div class ="box">
-    <ul>
-        <li class="boxlist">
-            <div class="bank">
-                <span class="name">디자인 방법론 실기2</span>
-                <span class="balance">양효령</span>
-            </div>
-        </li>
-        <li class="boxlist">
-                <span class="name">1학년 세미나</span>
-                <span class="balance">김정용</span>
-            </div>
-        </li>
-        <li class="boxlist">
-            <div class="bank">
-                <span class="name">전통회화연구</span>
-                <span class="balance">정이든</span>
-            </div>
-        </li>
-    </ul>
+<div class="header">
+    <div id="back">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+    <div class="talk_button">
+        <a style="color: white;" href="{% url 'makeroom' friend.pk %}" >
+        talk하기
+        </a>
+    </div>
 </div>
-</div>    
-    
-</body>
-</html>
-</html>
- 
-{% endblock container %}
-  
 
+<div class="profile_box">
+    <img class="prof_img" src="{% static 'img/default_photo.png' %}">
+    <div class="profile">
+
+        <h1 style="font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+            font-size: 18px;">{{ friend.nickname }}</h1>
+        <div id="info">
+            {% if friend.studentid_open is True %}
+            <span class="smallprofiletext">비공개입니다.</span>
+            {% else %}
+            <span class="smallprofiletext">{{friend.major}}</span>
+            {% endif %}
+
+            {% if friend.studentid_open is True %}
+            <span class="smallprofiletext">비공개입니다.</span>
+            {% else %}
+            <span class="smallprofiletext">{{ friend.studentid }}</span>
+            {% endif %}
+            <span class="smallprofiletext">{{ friend.gender }}}</span>
+
+            {% if friend.matewant is True %}
+            <img id="hand" src="{% static 'img/hand.svg' %}">
+            {% endif %}
+
+        </div>
+        <span id="smallinfo">{{ friend.introduce }}</span>
+    </div>
+</div>
+<h2> 친구의 시간표</h2>
+<div class="box">
+
+    <div class="boxlist">
+        {% for plr in plrs %}
+        <span class="name">{{ plr.lecture.subject }}</span>
+        <span class="balance">{{ plr.lecture.professor }}</span>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock container %}
