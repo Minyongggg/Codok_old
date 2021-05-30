@@ -185,8 +185,10 @@ def bblogin(request):
 ################## my page #############################
 @login_required(login_url='login')
 def mypage(request):
+    myprofile = Profile.objects.get(user=request.user)
     
-    return render(request, "1_mypage/mypage.html")
+
+    return render(request, "1_mypage/mypage.html", {"myprofile": myprofile} )
 
 def profile(request):
     if(request.method == 'POST'):
