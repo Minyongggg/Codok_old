@@ -144,7 +144,7 @@ h2 {
     margin-left:20px;
     margin-top:20px;
     display: flex;
-
+    object-fit: cover;
 }
 .list_container {
     display:flex;
